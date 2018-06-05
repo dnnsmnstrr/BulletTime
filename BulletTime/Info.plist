@@ -21,7 +21,11 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
-	<string>This application will use the camera for Augmented Reality.</string>
+	<string>This application will use the camera for an AWESOME BULLET TIME EFFECT!!!</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>We will store the individual photos to be safe.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>For manual import.</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

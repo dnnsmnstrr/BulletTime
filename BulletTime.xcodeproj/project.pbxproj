@@ -7,14 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B9335FA820C55B6900B67178 /* ConnectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9335FA720C55B6900B67178 /* ConnectionManager.swift */; };
 		B952F60520C1486C008B1BE0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B952F60420C1486C008B1BE0 /* AppDelegate.swift */; };
-		B952F60720C1486C008B1BE0 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = B952F60620C1486C008B1BE0 /* art.scnassets */; };
 		B952F60920C1486C008B1BE0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B952F60820C1486C008B1BE0 /* ViewController.swift */; };
 		B952F60C20C1486C008B1BE0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B952F60A20C1486C008B1BE0 /* Main.storyboard */; };
 		B952F60E20C1486E008B1BE0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B952F60D20C1486E008B1BE0 /* Assets.xcassets */; };
 		B952F61120C1486E008B1BE0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B952F60F20C1486E008B1BE0 /* LaunchScreen.storyboard */; };
 		B952F61C20C1486E008B1BE0 /* BulletTimeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B952F61B20C1486E008B1BE0 /* BulletTimeTests.swift */; };
 		B952F62720C1486F008B1BE0 /* BulletTimeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B952F62620C1486F008B1BE0 /* BulletTimeUITests.swift */; };
+		B952F63D20C17E89008B1BE0 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = B952F63C20C17E89008B1BE0 /* Utilities.swift */; };
+		B952F63F20C181EB008B1BE0 /* FocusSquare.swift in Sources */ = {isa = PBXBuildFile; fileRef = B952F63E20C181EB008B1BE0 /* FocusSquare.swift */; };
+		B952F64120C18237008B1BE0 /* FocusSquareSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B952F64020C18237008B1BE0 /* FocusSquareSegment.swift */; };
+		B952F64420C18876008B1BE0 /* SessionStates.swift in Sources */ = {isa = PBXBuildFile; fileRef = B952F64320C18876008B1BE0 /* SessionStates.swift */; };
+		B952F64620C18CAC008B1BE0 /* VirtualPlane.swift in Sources */ = {isa = PBXBuildFile; fileRef = B952F64520C18CAC008B1BE0 /* VirtualPlane.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,9 +40,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B9335FA720C55B6900B67178 /* ConnectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionManager.swift; sourceTree = "<group>"; };
 		B952F60120C1486C008B1BE0 /* BulletTime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BulletTime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B952F60420C1486C008B1BE0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		B952F60620C1486C008B1BE0 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
 		B952F60820C1486C008B1BE0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		B952F60B20C1486C008B1BE0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B952F60D20C1486E008B1BE0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -49,6 +54,11 @@
 		B952F62220C1486F008B1BE0 /* BulletTimeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BulletTimeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B952F62620C1486F008B1BE0 /* BulletTimeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BulletTimeUITests.swift; sourceTree = "<group>"; };
 		B952F62820C1486F008B1BE0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B952F63C20C17E89008B1BE0 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		B952F63E20C181EB008B1BE0 /* FocusSquare.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusSquare.swift; sourceTree = "<group>"; };
+		B952F64020C18237008B1BE0 /* FocusSquareSegment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusSquareSegment.swift; sourceTree = "<group>"; };
+		B952F64320C18876008B1BE0 /* SessionStates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionStates.swift; sourceTree = "<group>"; };
+		B952F64520C18CAC008B1BE0 /* VirtualPlane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VirtualPlane.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,11 +110,15 @@
 			isa = PBXGroup;
 			children = (
 				B952F60420C1486C008B1BE0 /* AppDelegate.swift */,
-				B952F60620C1486C008B1BE0 /* art.scnassets */,
 				B952F60820C1486C008B1BE0 /* ViewController.swift */,
+				B9335FA720C55B6900B67178 /* ConnectionManager.swift */,
+				B952F64520C18CAC008B1BE0 /* VirtualPlane.swift */,
+				B952F64320C18876008B1BE0 /* SessionStates.swift */,
 				B952F60A20C1486C008B1BE0 /* Main.storyboard */,
 				B952F60D20C1486E008B1BE0 /* Assets.xcassets */,
 				B952F60F20C1486E008B1BE0 /* LaunchScreen.storyboard */,
+				B952F64220C18254008B1BE0 /* FocusSquare */,
+				B952F63C20C17E89008B1BE0 /* Utilities.swift */,
 				B952F61220C1486E008B1BE0 /* Info.plist */,
 			);
 			path = BulletTime;
@@ -126,6 +140,15 @@
 				B952F62820C1486F008B1BE0 /* Info.plist */,
 			);
 			path = BulletTimeUITests;
+			sourceTree = "<group>";
+		};
+		B952F64220C18254008B1BE0 /* FocusSquare */ = {
+			isa = PBXGroup;
+			children = (
+				B952F63E20C181EB008B1BE0 /* FocusSquare.swift */,
+				B952F64020C18237008B1BE0 /* FocusSquareSegment.swift */,
+			);
+			path = FocusSquare;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -196,13 +219,16 @@
 				TargetAttributes = {
 					B952F60020C1486C008B1BE0 = {
 						CreatedOnToolsVersion = 9.4;
+						LastSwiftMigration = 1000;
 					};
 					B952F61620C1486E008B1BE0 = {
 						CreatedOnToolsVersion = 9.4;
+						LastSwiftMigration = 1000;
 						TestTargetID = B952F60020C1486C008B1BE0;
 					};
 					B952F62120C1486F008B1BE0 = {
 						CreatedOnToolsVersion = 9.4;
+						LastSwiftMigration = 1000;
 						TestTargetID = B952F60020C1486C008B1BE0;
 					};
 				};
@@ -232,7 +258,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B952F60720C1486C008B1BE0 /* art.scnassets in Resources */,
 				B952F61120C1486E008B1BE0 /* LaunchScreen.storyboard in Resources */,
 				B952F60E20C1486E008B1BE0 /* Assets.xcassets in Resources */,
 				B952F60C20C1486C008B1BE0 /* Main.storyboard in Resources */,
@@ -260,8 +285,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B952F63D20C17E89008B1BE0 /* Utilities.swift in Sources */,
+				B952F63F20C181EB008B1BE0 /* FocusSquare.swift in Sources */,
+				B952F64620C18CAC008B1BE0 /* VirtualPlane.swift in Sources */,
+				B952F64420C18876008B1BE0 /* SessionStates.swift in Sources */,
 				B952F60920C1486C008B1BE0 /* ViewController.swift in Sources */,
+				B9335FA820C55B6900B67178 /* ConnectionManager.swift in Sources */,
 				B952F60520C1486C008B1BE0 /* AppDelegate.swift in Sources */,
+				B952F64120C18237008B1BE0 /* FocusSquareSegment.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -443,7 +474,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.muensterer.BulletTime;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -461,7 +492,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.muensterer.BulletTime;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -481,7 +512,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.muensterer.BulletTimeTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BulletTime.app/BulletTime";
 			};
@@ -502,7 +533,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.muensterer.BulletTimeTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BulletTime.app/BulletTime";
 			};
@@ -522,7 +553,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.muensterer.BulletTimeUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = BulletTime;
 			};
@@ -542,7 +573,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.muensterer.BulletTimeUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = BulletTime;
 			};
