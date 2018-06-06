@@ -54,6 +54,11 @@
                         <viewLayoutGuide key="safeArea" id="dKk-ev-I8e"/>
                     </view>
                     <navigationItem key="navigationItem" id="WxT-h4-I4u">
+                        <barButtonItem key="leftBarButtonItem" systemItem="refresh" id="VTd-zA-6mQ">
+                            <connections>
+                                <action selector="resetTrackingButton:" destination="BV1-FR-VrT" id="ZWB-aK-bcH"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="reply" id="rpT-wc-0pe">
                             <connections>
                                 <action selector="shareSession:" destination="BV1-FR-VrT" id="gch-9p-9lf"/>

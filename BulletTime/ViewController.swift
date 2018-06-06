@@ -17,6 +17,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, ARSCNViewDe
     
     var circleNode: SCNNode!
     var images: [UIImage] = []
+    var circlePositioned = false
     
     
     //MARK: Outlets
@@ -35,9 +36,12 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, ARSCNViewDe
         setCircleRadius(radius: verticalSlider.value)
         connectionManager.sendRadius(radius: verticalSlider.value)
     }
+    @IBAction func resetTrackingButton(_ sender: Any) {
+        resetTracking()
+    }
     // MARK: - UI Elements
     
-    var focusSquare = FocusSquare()
+//    var focusSquare = FocusSquare()
     let connectionManager = ConnectionManager()
     
     var circle: SCNTorus?
@@ -203,6 +207,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, ARSCNViewDe
             }
         } else {
             // Fallback on earlier versions
+            sendMapButton.isEnabled = false
         }
 //        mappingStatusLabel.text = frame.worldMappingStatus.description
 //        updateSessionInfoLabel(for: frame, trackingState: frame.camera.trackingState)
@@ -264,16 +269,47 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, ARSCNViewDe
         let hitVector = SCNVector3Make(hitTransform.m41, hitTransform.m42, hitTransform.m43)
         positionCircle(position: hitVector)
         
-        // Send the anchor info to peers, so they can place the same content.
+        // Send the position info to peers, so they can place the same content.
         guard let data = try? NSKeyedArchiver.archivedData(withRootObject: hitVector, requiringSecureCoding: true)
             else { fatalError("can't encode new Position") }
         self.connectionManager.sendToAllPeers(data)
-    }
-      
-    
-    func positionCircle(position: SCNVector3) {
-        circleNode.position = position
+//        
+//        if circlePositioned{
+//           
+//        }
         
+//
+//        if #available(iOS 12.0, *) {
+//            let anchor = ARAnchor(name: "circle", transform: hitResult.worldTransform)
+//            sceneView.session.add(anchor: anchor)
+//
+//            // Send the anchor info to peers, so they can place the same content.
+//            guard let data = try? NSKeyedArchiver.archivedData(withRootObject: anchor, requiringSecureCoding: true)
+//                else { fatalError("can't encode anchor") }
+//            self.connectionManager.sendToAllPeers(data)
+//
+//        } else {
+//            // Fallback on earlier versions
+//            let hitTransform = SCNMatrix4(hitResult.worldTransform)
+//            let hitVector = SCNVector3Make(hitTransform.m41, hitTransform.m42, hitTransform.m43)
+//            positionCircle(position: hitVector)
+//
+//            // Send the position info to peers, so they can place the same content.
+//            guard let data = try? NSKeyedArchiver.archivedData(withRootObject: hitVector, requiringSecureCoding: true)
+//                else { fatalError("can't encode new Position") }
+//            self.connectionManager.sendToAllPeers(data)
+//
+//        }
+        
+    }
+
+
+    func positionCircle(position: SCNVector3) {
+        if !circlePositioned{
+            circlePositioned = true
+        }
+        circleNode.position = position
+
     }
     
     func setCircleRadius(radius: Float) {
@@ -340,12 +376,29 @@ extension ViewController : ConnectionManagerDelegate {
                     let anchor = unarchived as? ARAnchor {
                     
                     sceneView.session.add(anchor: anchor)
-                }
-                else {
-//                    print("unknown data recieved from \(peer)")
             }
-        } else {
+            else
+                if let unarchived = NSKeyedUnarchiver.unarchiveObject(with: data),
+                    let position = unarchived as? SCNVector3{
+                    print("repositioning")
+                    positionCircle(position: position)
+            }
+            else {
+                  print("weird data received")
+            }
+        }
+            
+        else {
             // Fallback on earlier versions
+            if let unarchived = NSKeyedUnarchiver.unarchiveObject(with: data),
+                let position = unarchived as? SCNVector3{
+                print("repositioning")
+                positionCircle(position: position)
+            }
+            else{
+                print("Error! Not on iOS 12, or didn't receive position")
+
+            }
         }
     }
     
