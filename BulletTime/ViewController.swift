@@ -17,7 +17,6 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, ARSCNViewDe
     
     var circleNode: SCNNode!
     var images: [UIImage] = []
-    var circlePositioned = false
     
     
     //MARK: Outlets
@@ -93,7 +92,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, ARSCNViewDe
         planeNode.eulerAngles.x = -.pi / 2
 
         // Make the plane visualization semitransparent to clearly show real-world placement.
-        planeNode.opacity = 0.25
+        planeNode.opacity = 0
 
         // Add the plane visualization to the ARKit-managed node so that it tracks
         // changes in the plane anchor as plane estimation continues.
@@ -269,17 +268,17 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, ARSCNViewDe
         let hitVector = SCNVector3Make(hitTransform.m41, hitTransform.m42, hitTransform.m43)
         positionCircle(position: hitVector)
         
-        // Send the position info to peers, so they can place the same content.
-        guard let data = try? NSKeyedArchiver.archivedData(withRootObject: hitVector, requiringSecureCoding: true)
-            else { fatalError("can't encode new Position") }
-        self.connectionManager.sendToAllPeers(data)
-//        
-//        if circlePositioned{
-//           
-//        }
-        
-//
-//        if #available(iOS 12.0, *) {
+//        // Send the position info to peers, so they can place the same content.
+//        guard let data = try? NSKeyedArchiver.archivedData(withRootObject: hitVector, requiringSecureCoding: true)
+//            else { fatalError("can't encode new Position") }
+//        self.connectionManager.sendToAllPeers(data)
+
+
+        if #available(iOS 12.0, *) {
+            guard let data = try? NSKeyedArchiver.archivedData(withRootObject: hitVector, requiringSecureCoding: true)
+                else { fatalError("can't encode new Position") }
+            self.connectionManager.sendToAllPeers(data)
+            
 //            let anchor = ARAnchor(name: "circle", transform: hitResult.worldTransform)
 //            sceneView.session.add(anchor: anchor)
 //
@@ -287,29 +286,22 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, ARSCNViewDe
 //            guard let data = try? NSKeyedArchiver.archivedData(withRootObject: anchor, requiringSecureCoding: true)
 //                else { fatalError("can't encode anchor") }
 //            self.connectionManager.sendToAllPeers(data)
-//
-//        } else {
-//            // Fallback on earlier versions
-//            let hitTransform = SCNMatrix4(hitResult.worldTransform)
-//            let hitVector = SCNVector3Make(hitTransform.m41, hitTransform.m42, hitTransform.m43)
-//            positionCircle(position: hitVector)
-//
-//            // Send the position info to peers, so they can place the same content.
-//            guard let data = try? NSKeyedArchiver.archivedData(withRootObject: hitVector, requiringSecureCoding: true)
-//                else { fatalError("can't encode new Position") }
-//            self.connectionManager.sendToAllPeers(data)
-//
-//        }
+
+        } else {
+            // Fallback on earlier versions
+
+            // Send the position info to peers, so they can place the same content.
+            guard let data = try? NSKeyedArchiver.archivedData(withRootObject: hitVector, requiringSecureCoding: true)
+                else { fatalError("can't encode new Position") }
+            self.connectionManager.sendToAllPeers(data)
+
+        }
         
     }
 
 
     func positionCircle(position: SCNVector3) {
-        if !circlePositioned{
-            circlePositioned = true
-        }
         circleNode.position = position
-
     }
     
     func setCircleRadius(radius: Float) {
@@ -329,7 +321,6 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, ARSCNViewDe
         }
     }
     
-    
     func resetTracking() {
         let configuration = ARWorldTrackingConfiguration()
         configuration.planeDetection = .horizontal
@@ -345,6 +336,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, ARSCNViewDe
 }
 
 extension ViewController : ConnectionManagerDelegate {
+    
     func receivedRadius(manager: ConnectionManager, radius: Float) {
         setCircleRadius(radius: radius)
         OperationQueue.main.addOperation {
@@ -357,7 +349,7 @@ extension ViewController : ConnectionManagerDelegate {
     }
     
     /// - Tag: ReceiveWorld
-    func receivedWorldMap(_ data: Data) {
+    func receivedData(_ data: Data) {
         if #available(iOS 12.0, *) {
             if let unarchived = try? NSKeyedUnarchiver.unarchivedObject(of: ARWorldMap.classForKeyedUnarchiver(), from: data),
                 let worldMap = unarchived as? ARWorldMap {

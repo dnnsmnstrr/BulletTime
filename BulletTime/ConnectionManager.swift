@@ -14,8 +14,7 @@ protocol ConnectionManagerDelegate {
     func connectedDevicesChanged(manager : ConnectionManager, connectedDevices: [String])
     func receivedImage(manager: ConnectionManager, image: UIImage)
     func receivedRadius(manager: ConnectionManager, radius: Float)
-    func receivedWorldMap(_ data: Data)
-//    func receivedData(_ data: Data)
+    func receivedData(_ data: Data)
 
     
 }
@@ -151,7 +150,7 @@ extension ConnectionManager : MCSessionDelegate {
             self.delegate?.receivedImage(manager: self, image: object! as! UIImage)
         }
         else {
-            self.delegate?.receivedWorldMap(data)
+            self.delegate?.receivedData(data)
         }
 
     }
