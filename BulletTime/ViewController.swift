@@ -320,10 +320,8 @@ extension ViewController : ConnectionManagerDelegate {
         images.append(image)
     }
     
-    
-    /// - Tag: ReceiveData
-    func receivedData(_ data: Data) {
-        
+    /// - Tag: ReceiveWorld
+    func receivedWorldMap(_ data: Data) {
         if #available(iOS 12.0, *) {
             if let unarchived = try? NSKeyedUnarchiver.unarchivedObject(of: ARWorldMap.classForKeyedUnarchiver(), from: data),
                 let worldMap = unarchived as? ARWorldMap {
