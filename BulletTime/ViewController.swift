@@ -18,7 +18,6 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, ARSCNViewDe
     var circleNode: SCNNode!
     var images: [UIImage] = []
     
-    
     //MARK: Outlets
 
     @IBOutlet weak var connectionsLabel: UILabel!
@@ -40,7 +39,6 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, ARSCNViewDe
     }
     // MARK: - UI Elements
     
-//    var focusSquare = FocusSquare()
     let connectionManager = ConnectionManager()
     
     var circle: SCNTorus?
@@ -208,8 +206,6 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, ARSCNViewDe
             // Fallback on earlier versions
             sendMapButton.isEnabled = false
         }
-//        mappingStatusLabel.text = frame.worldMappingStatus.description
-//        updateSessionInfoLabel(for: frame, trackingState: frame.camera.trackingState)
     }
     
     
@@ -275,6 +271,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, ARSCNViewDe
 
 
         if #available(iOS 12.0, *) {
+            // Send the position info to peers, so their circle can be repositioned.
             guard let data = try? NSKeyedArchiver.archivedData(withRootObject: hitVector, requiringSecureCoding: true)
                 else { fatalError("can't encode new Position") }
             self.connectionManager.sendToAllPeers(data)
@@ -290,7 +287,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, ARSCNViewDe
         } else {
             // Fallback on earlier versions
 
-            // Send the position info to peers, so they can place the same content.
+            // Send the position info to peers, so their circle can be repositioned.
             guard let data = try? NSKeyedArchiver.archivedData(withRootObject: hitVector, requiringSecureCoding: true)
                 else { fatalError("can't encode new Position") }
             self.connectionManager.sendToAllPeers(data)
@@ -307,18 +304,6 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, ARSCNViewDe
     func setCircleRadius(radius: Float) {
         circle?.ringRadius = CGFloat(radius)
         circleNode.geometry = circle
-    }
-    
-    
-    func addCircleToPlane(plane: VirtualPlane, atPoint point: CGPoint) {
-        let hits = sceneView.hitTest(point, types: .existingPlaneUsingExtent)
-        if hits.count > 0, let firstHit = hits.first {
-            if let newCircle = circleNode?.clone() {
-                newCircle.position = SCNVector3Make(firstHit.worldTransform.columns.3.x, firstHit.worldTransform.columns.3.y, firstHit.worldTransform.columns.3.z)
-                cleanupARSession()
-                sceneView.scene.rootNode.addChildNode(newCircle)
-            }
-        }
     }
     
     func resetTracking() {
@@ -401,6 +386,11 @@ extension ViewController : ConnectionManagerDelegate {
     }
 }
 
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromUIImagePickerControllerInfoKey(_ input: UIImagePickerController.InfoKey) -> String {
+	return input.rawValue
+}
+
 //
 //extension ViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
 //    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
@@ -418,8 +408,3 @@ extension ViewController : ConnectionManagerDelegate {
 //    }
 //
 //}
-
-// Helper function inserted by Swift 4.2 migrator.
-fileprivate func convertFromUIImagePickerControllerInfoKey(_ input: UIImagePickerController.InfoKey) -> String {
-	return input.rawValue
-}

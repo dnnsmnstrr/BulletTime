@@ -31,9 +31,11 @@
                                 </constraints>
                                 <state key="normal" image="ic_photo_camera"/>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kFz-hu-266">
-                                <rect key="frame" x="16" y="64" width="343" height="47"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kFz-hu-266">
+                                <rect key="frame" x="0.0" y="64" width="375" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="PD4-Ww-a5a"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -48,7 +50,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="dKk-ev-I8e" firstAttribute="trailing" secondItem="kFz-hu-266" secondAttribute="trailing" id="4Sb-dB-aPO"/>
                             <constraint firstItem="S0z-po-tQl" firstAttribute="centerX" secondItem="2IX-G3-7qR" secondAttribute="centerX" id="KBw-fB-QHN"/>
+                            <constraint firstItem="kFz-hu-266" firstAttribute="leading" secondItem="dKk-ev-I8e" secondAttribute="leading" id="S0H-ng-cXp"/>
+                            <constraint firstItem="kFz-hu-266" firstAttribute="top" secondItem="dKk-ev-I8e" secondAttribute="top" id="UqH-Be-Lmm"/>
                             <constraint firstItem="dKk-ev-I8e" firstAttribute="bottom" secondItem="S0z-po-tQl" secondAttribute="bottom" constant="20" id="iRl-m8-anm"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="dKk-ev-I8e"/>
@@ -80,7 +85,7 @@
                     <state key="normal" title="Button"/>
                 </button>
             </objects>
-            <point key="canvasLocation" x="972" y="33.733133433283363"/>
+            <point key="canvasLocation" x="971.5" y="33.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="GJt-9Y-R6h">
