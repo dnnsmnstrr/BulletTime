@@ -90,6 +90,30 @@ class ConnectionManager: NSObject {
         
     }
     
+    func sendReset(reset: Bool = true) {
+        if session.connectedPeers.count > 0 {
+            do {
+                var boolString = ""
+                if (reset) {
+                    boolString = "true"
+                } else {
+                    boolString = "false"
+                }
+                // ATTEMPT TO SEND DATA TO CAMERA
+                try session.send((boolString.data(using: String.Encoding.utf8))!, toPeers: session.connectedPeers, with: .reliable)
+            }
+            catch {
+                print("SOMETHING WENT WRONG WITH THE RESET COMMAND")
+            }
+//            let data = NSKeyedArchiver.archivedData(withRootObject: reset)
+//            do {
+//                try session.send(data, toPeers: session.connectedPeers, with: .reliable)
+//            } catch {
+//                print("[Error sending tracking reset] \(error)")
+//            }
+        }
+    }
+    
 
 }
 

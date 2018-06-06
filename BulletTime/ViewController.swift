@@ -36,6 +36,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, ARSCNViewDe
     }
     @IBAction func resetTrackingButton(_ sender: Any) {
         resetTracking()
+        connectionManager.sendReset()
     }
     // MARK: - UI Elements
     
@@ -360,6 +361,17 @@ extension ViewController : ConnectionManagerDelegate {
                     print("repositioning")
                     positionCircle(position: position)
             }
+                else if let dataString = NSString(data: data, encoding: String.Encoding.utf8.rawValue){
+                    if dataString == "true"{
+                        resetTracking()
+                    }
+            }
+//            else
+//                if let unarchived = NSKeyedUnarchiver.unarchiveObject(with: data),
+//                    let _ = unarchived as? Bool{
+//                    print("resetting")
+//                    resetTracking()
+//                    }
             else {
                   print("weird data received")
             }
