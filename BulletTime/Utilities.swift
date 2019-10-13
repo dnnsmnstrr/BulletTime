@@ -18,10 +18,10 @@ extension float4x4 {
     var translation: float3 {
 		get {
 			let translation = columns.3
-			return float3(translation.x, translation.y, translation.z)
+			return SIMD3(translation.x, translation.y, translation.z)
 		}
 		set(newValue) {
-            columns.3 = float4(newValue.x, newValue.y, newValue.z, columns.3.w)
+            columns.3 = SIMD4(newValue.x, newValue.y, newValue.z, columns.3.w)
 		}
     }
 	

@@ -84,7 +84,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, ARSCNViewDe
         // Create a SceneKit plane to visualize the plane anchor using its position and extent.
         let plane = SCNPlane(width: CGFloat(planeAnchor.extent.x), height: CGFloat(planeAnchor.extent.z))
         let planeNode = SCNNode(geometry: plane)
-        planeNode.simdPosition = float3(planeAnchor.center.x, 0, planeAnchor.center.z)
+        planeNode.simdPosition = SIMD3(planeAnchor.center.x, 0, planeAnchor.center.z)
 
         // `SCNPlane` is vertically oriented in its local coordinate space, so
         // rotate the plane to match the horizontal orientation of `ARPlaneAnchor`.
@@ -107,7 +107,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, ARSCNViewDe
             else { return }
 
         // Plane estimation may shift the center of a plane relative to its anchor's transform.
-        planeNode.simdPosition = float3(planeAnchor.center.x, 0, planeAnchor.center.z)
+        planeNode.simdPosition = SIMD3(planeAnchor.center.x, 0, planeAnchor.center.z)
 
         // Plane estimation may also extend planes, or remove one plane to merge its extent into another.
         plane.width = CGFloat(planeAnchor.extent.x)
@@ -202,6 +202,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, ARSCNViewDe
                 sendMapButton.isEnabled = !connectionManager.session.connectedPeers.isEmpty
             case .mapped:
                 sendMapButton.isEnabled = !connectionManager.session.connectedPeers.isEmpty
+            @unknown default: sendMapButton.isEnabled = false
             }
         } else {
             // Fallback on earlier versions
@@ -337,7 +338,7 @@ extension ViewController : ConnectionManagerDelegate {
     /// - Tag: ReceiveWorld
     func receivedData(_ data: Data) {
         if #available(iOS 12.0, *) {
-            if let unarchived = try? NSKeyedUnarchiver.unarchivedObject(of: ARWorldMap.classForKeyedUnarchiver(), from: data),
+            if let unarchived = ((try? NSKeyedUnarchiver.unarchivedObject(ofClasses: [ARWorldMap.classForKeyedUnarchiver()], from: data)) as Any??),
                 let worldMap = unarchived as? ARWorldMap {
                 
                 // Run the session with the received world map.
@@ -350,7 +351,7 @@ extension ViewController : ConnectionManagerDelegate {
 //                mapProvider = peer
             }
             else
-                if let unarchived = try? NSKeyedUnarchiver.unarchivedObject(of: ARAnchor.classForKeyedUnarchiver(), from: data),
+                if let unarchived = ((try? NSKeyedUnarchiver.unarchivedObject(ofClasses: [ARAnchor.classForKeyedUnarchiver()], from: data)) as Any??),
                     let anchor = unarchived as? ARAnchor {
                     
                     sceneView.session.add(anchor: anchor)
